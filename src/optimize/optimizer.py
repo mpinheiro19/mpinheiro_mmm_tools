@@ -1,18 +1,10 @@
 from typing import Callable, List
 
 import numpy as np
-from pulp import LpMinimize, LpProblem, LpVariable, lpSum
+from pulp import LpConstraint, LpMaximize, LpProblem, LpVariable, lpSum
 
 
 class SimulatedAnnealingOptimizer:
-    temperature: float
-    cooling_rate: float
-    num_iterations: int
-    initial_params: np.ndarray
-    loss_func: Callable[[np.ndarray], float]
-    best_params: np.ndarray
-    best_loss: float
-
     """
     Simulated Annealing class for optimizing an input function.
     This optimizer refers to the metalurgic thermodynamic process.
@@ -63,6 +55,14 @@ class SimulatedAnnealingOptimizer:
     get_best_loss()
         Return the best loss found during optimization.
     """
+
+    temperature: float
+    cooling_rate: float
+    num_iterations: int
+    initial_params: np.ndarray
+    loss_func: Callable[[np.ndarray], float]
+    best_params: np.ndarray
+    best_loss: float
 
     def __init__(
         self,
@@ -161,6 +161,31 @@ class SimulatedAnnealingOptimizer:
 
 
 class LinearProgrammingOptimizer:
+    """
+    The LinearProgrammingOptimizer class is a class that provides an interface for linear programming optimization.
+    The class is responsible for creating a problem instance, defining decision variables, constraints, and objective
+    function, and solving the problem. The optimal solution and objective value can then be retrieved from the class instance.
+
+    Parameters:
+    -----------
+
+    num_vars (int): The number of decision variables.
+    constraints (List[List[float]]): The matrix of coefficients for the constraints.
+    coefficients (List[float]): The coefficients of the objective function.
+    variable_names (List[str]): The names of the decision variables.
+
+    Attributes:
+    -----------
+
+    solution (List[float]): The optimal solution found during optimization.
+    objective_value (float): The objective value of the optimal solution found during optimization.
+
+    Methods:
+    --------
+
+    optimize(self) -> None: Runs the optimization algorithm.
+    """
+
     num_vars: int
     constraints: List[List[float]]
     coefficients: List[float]
@@ -177,6 +202,11 @@ class LinearProgrammingOptimizer:
     ) -> None:
         """
         Initializes the LinearProgrammingOptimizer class.
+        TODO: define class to be suited for experimentation
+        after first solver is generated. See docs
+        https://coin-or.github.io/pulp/CaseStudies/a_two_stage_production_planning_problem.html
+
+        FIXME: class has params ill-defined accordingly do PuLP library
 
         Args:
             num_vars (int): The number of decision variables.
@@ -194,7 +224,7 @@ class LinearProgrammingOptimizer:
         Runs the optimization algorithm.
         """
         # Create the problem
-        problem = LpProblem("LP_Problem", LpMinimize)
+        problem = LpProblem("LP_Problem", LpMaximize)
 
         # Define decision variables
         vars = LpVariable.dicts("x", self.variable_names, lowBound=0)
