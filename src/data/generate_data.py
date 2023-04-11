@@ -29,5 +29,3 @@ if __name__ == "__main__":
     df = pd.DataFrame(
         data, index=date_range, columns=["ft_" + str(i + 1) for i in range(N)]
     )
-
-    # df.to_csv("./data/raw/fake_series.csv")
