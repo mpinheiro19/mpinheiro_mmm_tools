@@ -27,3 +27,7 @@ Media Mix Modeling is a valuable tool for marketers looking to improve the perfo
 - Measuring the Impact of Promotions: Companies often run promotions to boost sales or clear inventory. MMM can help determine the impact of these promotions on sales, and which promotions are most effective in driving sales. This information can be used to optimize future promotions and ensure that they are generating a positive ROI.
 
 MMM is best suited for these use cases because it provides a holistic view of the marketing mix, taking into account all channels and tactics used to promote a product or service. It allows for the measurement of the impact of each element of the marketing mix on sales, and can identify which channels or tactics are driving the most sales. Additionally, MMM can provide insights into the interactions between different channels and tactics, such as how digital advertising impacts TV advertising, which can help optimize the marketing mix for maximum impact. Overall, MMM helps companies optimize their marketing spend and maximize ROI.
+
+## Mathematical approach
+
+The mathematical equations used in MMM are typically based on statistical techniques such as multiple regression, time series analysis, and Bayesian analysis. These techniques allow marketers to isolate the impact of each marketing variable on business performance, while controlling for other factors such as seasonality and external events. The resulting models can be used to simulate different marketing scenarios and optimize marketing budget allocation across channels and tactics.
