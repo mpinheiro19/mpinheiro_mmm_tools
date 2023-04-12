@@ -25,6 +25,8 @@ class SimulatedAnnealingOptimizer:
         The number of iterations to run the simulated annealing algorithm for.
     initial_params : numpy array
         The initial parameters for the function to be optimized.
+    feats_constraints : numpy array
+        The lower and upper bound of each parameter domain allowed of each variable.
     loss_func : function
         The function to be optimized.
 
@@ -38,6 +40,8 @@ class SimulatedAnnealingOptimizer:
         The number of iterations to run the simulated annealing algorithm for.
     initial_params : numpy array
         The initial parameters for the function to be optimized.
+    feats_constraints : numpy array
+        The lower and upper bound of each parameter domain allowed of each variable.
     loss_func : function
         The function to be optimized.
     best_params : numpy array
@@ -60,6 +64,7 @@ class SimulatedAnnealingOptimizer:
     cooling_rate: float
     num_iterations: int
     initial_params: np.ndarray
+    feats_constraints: np.ndarray
     loss_func: Callable[[np.ndarray], float]
     best_params: np.ndarray
     best_loss: float
@@ -70,6 +75,7 @@ class SimulatedAnnealingOptimizer:
         cooling_rate: float,
         num_iterations: int,
         initial_params: np.ndarray,
+        feats_constraints: np.ndarray,
         loss_func: Callable[[np.ndarray], float],
     ) -> None:
         """
@@ -79,6 +85,7 @@ class SimulatedAnnealingOptimizer:
         self.cooling_rate = cooling_rate
         self.num_iterations = num_iterations
         self.initial_params = initial_params
+        self.feats_constraints = feats_constraints
         self.loss_func = loss_func
         self.best_params = None
         self.best_loss = np.inf
@@ -126,6 +133,19 @@ class SimulatedAnnealingOptimizer:
             The best loss found during optimization.
         """
         return self.best_loss
+
+    def _get_constrain_neighbor(self, feat_constraints, params):
+        """
+        Gets the constraints and return a new value for params
+
+        Args:
+            feat_constraints (np.ndarray): array of tuple (lowerbd, upperbd)
+            params (np.ndarray): The current params
+        """
+        # new_constrain_input = [np.random.uniform(lb, ub) for lb, ub in feat_constraints]
+        # disturb initial params asserting domain
+
+        raise NotImplementedError
 
     def _get_neighbor_params(self, params) -> np.ndarray:
         """
